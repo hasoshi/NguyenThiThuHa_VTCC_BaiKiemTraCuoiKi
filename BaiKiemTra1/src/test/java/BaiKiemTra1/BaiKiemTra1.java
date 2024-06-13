@@ -33,49 +33,44 @@ public class BaiKiemTra1 extends BaseTest {
         Actions action = new Actions(driver);
 
         driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//span[contains(@class, 'aiz-side-nav-text') and contains(text(), 'Add New Product')]")).click();
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//input[@placeholder='Product Name']")).sendKeys("xin chào");
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//div[contains(text(),'Sport shoes')]")).click();
         driver.findElement(By.xpath("(//span[@class='text'][normalize-space()='---- T-shirt'])[1]")).click();
-        sleep(1);
-        driver.findElement(By.xpath("//div[contains(text(),'Select Brand')]")).click();
-        driver.findElement(By.xpath("//span[normalize-space()='Demo brand1']")).click();
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//input[@placeholder='Unit (e.g. KG, Pc etc)']")).sendKeys("kg");
-        sleep(1);
-        driver.findElement(By.xpath("//input[@placeholder='0.00']")).clear();
-        driver.findElement(By.xpath("//input[@placeholder='0.00']")).sendKeys("10");
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//input[@name='min_qty']")).clear();
         driver.findElement(By.xpath("//input[@name='min_qty']")).sendKeys("1");
-        sleep(1);
+        sleep(3);
         driver.findElement(By.xpath("//span[@role='textbox']")).sendKeys("hello tag");
+        sleep(3);
         action.sendKeys(Keys.ENTER).build().perform();
         sleep(3);
         driver.findElement(By.xpath("//div[@data-multiple='true']//div[@class='form-control file-amount'][normalize-space()='Choose File']")).click();
-        driver.findElement(By.xpath("//input[@placeholder='Search your files']")).sendKeys("icon");
+        driver.findElement(By.xpath("//input[@placeholder='Search your files']")).sendKeys("cooking");
         sleep(3);
-        driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/img[1]")).click();
-        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
-        sleep(1);
+        driver.findElement(By.xpath("//div[@title='cookingrice.png']")).click();
+        driver.findElement(By.xpath("//button[text()='Add Files']")).click();
+        sleep(3);
         driver.findElement(By.xpath("//input[@placeholder='Unit price']")).sendKeys("10000");
         driver.findElement(By.xpath("//input[@placeholder='Discount']")).clear();
+        sleep(3);
         driver.findElement(By.xpath("//input[@placeholder='Discount']")).sendKeys("10");
-        driver.findElement(By.xpath("//div[@class='col-md-3']//div[@class='filter-option-inner-inner'][normalize-space()='Flat']")).click();
-        driver.findElement(By.xpath("//a[@id='bs-select-6-1']")).click();
         sleep(3);
         driver.findElement(By.xpath("//input[@placeholder='Quantity']")).clear();
         driver.findElement(By.xpath("//input[@placeholder='Quantity']")).sendKeys("10");
+        sleep(3);
         driver.findElement(By.xpath("//button[normalize-space()='Save & Unpublish']")).click();
-        sleep(2);
+        sleep(3);
     }
 
     @Test
-    public void verifyAddProduct(Method method) {
-        Log.info("verifyAddProduct");
+    public void checkProduct(Method method) {
+        Log.info("Check Product");
         CaptureHelpers.startRecord(method.getName());
 
         login();
@@ -83,9 +78,9 @@ public class BaiKiemTra1 extends BaseTest {
         String producrName = "xin chào";
         String totalStock = "10";
 
-        driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
+        driver.findElement(By.xpath("//span[text()='Products']")).click();
         sleep(1);
-        driver.findElement(By.xpath("//span[normalize-space()='All products']")).click();
+        driver.findElement(By.xpath("//span[text()='All products']")).click();
         sleep(1);
         driver.findElement(By.id("search")).sendKeys("xin chào");
         action.sendKeys(Keys.ENTER).build().perform();
