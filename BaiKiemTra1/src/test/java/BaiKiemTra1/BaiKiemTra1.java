@@ -80,7 +80,7 @@ public class BaiKiemTra1 extends BaseTest {
 
         login();
         Actions action = new Actions(driver);
-        String producrName = "quà tặng";
+        String producrName = "xin chào";
         String totalStock = "10";
 
         driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
@@ -103,10 +103,7 @@ public class BaiKiemTra1 extends BaseTest {
 
     @AfterMethod
     public void takeScreenshot(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            CaptureHelpers.captureScreenshot(result.getName());
-        }
-
+        CaptureHelpers.captureScreenshot(driver, result.getName());
         CaptureHelpers.stopRecord();
     }
 

@@ -7,6 +7,7 @@ import org.monte.media.math.Rational;
 import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 
 import java.awt.*;
@@ -15,6 +16,7 @@ import java.io.IOException;
 //import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import static org.monte.media.FormatKeys.*;
 import static org.monte.media.VideoFormatKeys.*;
@@ -77,19 +79,19 @@ public class CaptureHelpers extends ScreenRecorder{
     //Tạo format ngày giờ để xíu gắn dô cái name của screenshot hoặc record video không bị trùng tên (không bị ghi đè file)
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
 
-    public static void captureScreenshot(String screenshotName) {
+    public static void captureScreenshot(WebDriver driver, String screenshotName) {
         try {
             // Tạo tham chiếu đối tượng của TakesScreenshot với dirver hiện tại
-            TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+            TakesScreenshot ts = (TakesScreenshot) driver;
             // Gọi hàm getScreenshotAs để chuyển hóa hình ảnh về dạng FILE
             File source = ts.getScreenshotAs(OutputType.FILE);
             //Kiểm tra folder nếu không tồn tại thì tạo folder
-            File theDir = new File(SystemHelper.getCurrentDir() + PropertiesHelper.getValue("SCREENSHOT_PATH"));
+            File theDir = new File("./screenshots/");
             if (!theDir.exists()) {
                 theDir.mkdirs();
             }
             // Chổ này đặt tên thì truyền biến "screenName" gán cho tên File chụp màn hình
-            FileHandler.copy(source, new File(SystemHelper.getCurrentDir() + PropertiesHelper.getValue("SCREENSHOT_PATH") + File.separator + screenshotName + "_" + dateFormat.format(new Date()) + ".png"));
+            FileHandler.copy(source, new File("./screenshots/" + screenshotName  + ".png"));
             System.out.println("Screenshot taken: " + screenshotName);
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot: " + e.getMessage());
